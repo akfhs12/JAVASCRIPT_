@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 내장객체_Date</title>
+  <style>
+    #clock {
+      color: #0000ff;
+      background-color: #ffff00;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>자바스크립트 내장객체_Date객체 - 날짜, 시간</h2>
+  <p>Date 객체는 현재 또는 특정 날짜와 시간에 대한 정보를 제공하는 객체</p>
+  <p>게시판 또는 웹페이지의 증권, 은행, 뉴스페이지 등에 오늘 날짜와 시간을 표시.</p>
+  <p>작성법) let 변수명 = new Date();</p>
+
+  <h3>날짜와 시간 정보를 제공하는 Date 객체 속성들</h3>
+  <p>getFullYear(): 연도에 대한 정보를 제공</p>
+  <p>getMonth(): 월(0~11)에 대한 정보를 제공</p>
+  <p>getDate(): 일에 대한 정보를 제공</p>
+  <p>getDay(): 요일(0~6)에 대한 정보를 제공</p>
+  <p>getHour(): 시간(0~23)에 대한 정보를 제공</p>
+  <p>getMinutes(): 분에 대한 정보를 제공</p>
+  <p>getSecond(): 초(0~59)에 대한 정보를 제공</p>
+  <p>getMilliseconds(): 밀리초(1/1000)에 대한 정보를 제공</p>
+
+  <h3>실시간 디지털 시계 표시하기</h3>
+  <div id="clock"></div>
+
+  
+
+  <script>
+    // 날짜 객체 생성
+    let today = new Date();
+    let now = document.querySelector(".now");
+
+    // 날짜객체와 메서드로 정보 출력하기
+    document.write(`${today} <br>`);
+    document.write(`${today.getFullYear()}년 <br>`);
+    document.write(`${today.getMonth() + 1}월 <br>`);
+    document.write(`${today.getDate()}일 <br>`);
+    document.write(`${today.getDay()} <br>`);
+
+    let yoil = ['일', '월', '화', '수', '목', '금', '토'];
+    document.write(`${yoil[today.getDay()]}요일 <br>`);
+
+    document.write(`${today.getHours()}시 <br>`);
+    document.write(`${today.getMinutes()}분 <br>`);
+    document.write(`${today.getSeconds()}초 <br>`);
+    document.write(`${today.getMilliseconds()} <br>`);
+
+    // setInterval(()=> now.innerHTML = (`${today} <br>`), 1000);
+
+    // 실시간 디지털 시계
+    function clock() {
+      let now = new Date();
+      let h = now.getHours();
+      let m = now.getMinutes();
+      let s = now.getSeconds();
+
+      // 시, 분, 초 앞에 '0' 문자열 붙이기
+      h = checkTime(h);
+      m = checkTime(m);
+      s = checkTime(s);
+
+      document.getElementById('clock').innerHTML = `${h} : ${m} : ${s}`;
+      let t = setTimeout(clock, 500);
+    }
+
+    function checkTime(a){
+      if(a < 10){
+        a = '0'+ a;
+      } return a;
+    }
+    clock();
+
+
+    
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리_문서객체조작_내용_추가_삭제메서드</title>
+  <style>
+    ul {
+      border: 3px solid #ff0000;
+    }
+
+    .box01 {
+      width: 600px;
+      height: 150px;
+      border: 3px solid #0000ff;
+      background-color: #ffff00;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn01').click(function () {
+        $('.list01').append('<li>append 내용 추가</li>');
+      })
+      $('#btn02').click(function () {
+        $('.list01').prepend('<li>prepend 내용 추가</li>');
+      })
+      $('#btn03').click(function () {
+        $('.list01').after('<p>after 내용 추가</p>');
+      })
+      $('#btn04').click(function () {
+        $('.list01').before('<p>before 내용 추가</p>');
+      })
+
+
+      $('#btn05').click(function () {
+        $('.box01').remove();
+      })
+      $('#btn06').click(function () {
+        $('.box01').empty();
+      })
+
+      let box = `<div class="box01">
+        아래 remove 버튼을 클릭하면 이 박스요소가 제거<br>
+        아래 empty 버튼을 클릭하면 이 박스 요소 내의 내용만 제거
+        </div>`
+
+      let box2 = `<div class="box01">
+        <span class = "cont">아래 remove 버튼을 클릭하면 이 박스요소가 제거<br>
+        아래 empty 버튼을 클릭하면 이 박스 요소 내의 내용만 제거</span>
+        </div>`
+
+      // $('#btn07').click(function () {
+      //   if ($('.box01').length < 1) {
+      //     $('.list02').after(box);
+      //   }
+      // })
+
+      $('#btn07').click(function () {
+        if ($('.box01').hasClass('box01') == false) {
+          $('.list02').after(box);
+        }
+      })
+
+      $('#btn08').click(function () {
+        $('.box01').html(`아래 remove 버튼을 클릭하면 이 박스요소가 제거<br>
+    아래 empty 버튼을 클릭하면 이 박스 요소 내의 내용만 제거`);
+      })
+
+    })
+  </script>
+</head>
+
+<body>
+  <h2>제이쿼리 문서객체조작_내용_추가_삭제메서드</h2>
+  <p>DOM(문서객체모델)에서 문서안의 요소에 내용을 추가하거나 삭제할 수 있다.</p>
+  <p>클래스조작(addClass, removeClass, toggleClass, hasClass)</p>
+  <p>속성조작(attr)</p>
+  <p>내용조작(text, html)</p>
+
+  <ul class="list01">
+    <li>append(); 사용자가 선택한 요소를 기준으로 안쪽 맨 뒤쪽에 내용 추가</li>
+    <li>prepend(); - 사용자가 선택한 요소를 기준으로 안쪽 맨 앞쪽에 내용 추가</li>
+    <li>after(); - 사용자가 선택한 요소를 기준으로 바깥쪽 맨 뒤에 내용 추가</li>
+    <li>before(); - 사용자가 선택한 요소를 기준으로 바깥쪽 맨 앞에 내용 추가</li>
+  </ul>
+
+  <input type="button" value="append()" id="btn01">
+  <input type="button" value="prepend()" id="btn02">
+  <input type="button" value="after()" id="btn03">
+  <input type="button" value="before()" id="btn04">
+
+  <p>insertAfter(), insertBefore()는 , after(), before()메서드와 기능은 같지만 사용법이 다르다</p>
+  <p>예) <br>
+    $('A').after('B'); - A요소의 바깥쪽으로 뒤에 B요소를 추가한다
+    $('B').insertafter('A'); - A요소의 바깥쪽으로 뒤에 B요소를 추가한다
+  </p>
+
+  <h3>문서객체조작 - 내용을 삭제하기 위한 메서드(remove)</h3>
+  <p>사용자가 선택한 요소의 내용만 삭제하거나 아예 태그 요소를 삭제할 수도 있다</p>
+  <ul class="list02">
+    <li>remove() - 사용자가 선택한 요소를 제거</li>
+    <li>empty() - 사용자가 선택한 요소의 내용만 제거</li>
+  </ul>
+
+  <div class="box01">
+    <span class = "cont">아래 remove 버튼을 클릭하면 이 박스요소가 제거<br>
+    아래 empty 버튼을 클릭하면 이 박스 요소 내의 내용만 제거</span>
+  </div>
+
+  <input type="button" value="remove" id="btn05">
+  <input type="button" value="empty" id="btn06">
+  <input type="button" value="박스 되돌리기" id="btn07">
+  <input type="button" value="내용 되돌리기" id="btn08">
+
+  <dl>
+    <dt>조건식 만들기 - 태그 존재 여부 판단</dt>
+    <dd>javascript - if(document.getElementById('태그명')){존재하면 실행}</dd>
+    <dd>jQuery - if($('.class').length > 0){존재하면 실행}</dd>
+    <dd>jQuery - if($('.class').hasClass('.class')){존재하면 실행}</dd>
+  </dl>
+
+</body>
+
+</html>

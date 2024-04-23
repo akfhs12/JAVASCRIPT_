@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 제어문_while문, do_while문, for문</title>
+  <style>
+    table{
+      border: 1px solid #666666;
+      border-collapse: collapse; /* 셀과 셀 사이 여백 제거 */
+      width: 400px;
+    }
+    table tr, table td{
+      border: 1px solid #666666;
+    }
+  </style>
+</head>
+<body>
+  <h2>자바스크립트 제어문_while문, do_while문, for문</h2>
+  <p>반목문은 작업을 반복수행할 때 사용하며, 조건문(if)이 프로그램을 지적으로 만듬다면 반복문은 프로그램을 강력하게 만드는 역할을 한다</p>
+  <p>주의할 점 - 조건을 잘못 설정하면 무한루프에 빠지는 오류가 발생하여 브라우저 화면 멈춤 현상이 발생</p>
+  <pre>
+    1. while문 - 반복조건
+    2. do while문 - 반복조건
+    3. for문 - 반복조건
+  </pre>
+
+  <script>
+    //1. while문으로 1부터 10까지 반복출력하기
+    let n=1;
+    while(n<=10){
+      document.write(n);
+      n++;
+    }
+    document.write(' while문 출력<hr>');
+    //2. do while문으로 1부터 10까지 반복출력하기
+    let n1=1;
+    do {
+      document.write(n1);
+      n1++;
+    } while (n1<=10);
+    document.write(' do while문 출력<hr>');
+    //3. for문으로 1부터 10까지 반복출력하기
+    for(let n2=1; n2<=10; n2++){
+      document.write(n2);
+    }
+    document.write(' for문 출력<hr>');
+
+    //4. 실습하기 - 20부터 50까지 숫자 출력하기
+    for(let nn=20; nn<=50; nn++){
+      document.write(`${nn} `);
+    }
+    
+    document.write('<br>');
+
+    let nn2 = 20;
+    while(nn2<=50){
+      document.write(`${nn2} `);
+      nn2++;
+    }
+    document.write('<br>');
+    
+    // 5. 실습하기 - 50부터 20까지 역순 출력
+    for(let a=50; a>=20; a--){
+      document.write(`${a} `);
+    }
+    document.write('<br>');
+
+    let a2 = 50;
+    while(a2>=20){
+      document.write(`${a2} `);
+      a2--;
+    }
+
+        
+    // 6. 실습하기 - 50부터 20까지 역순 출력 - 짝수
+    for(let b=50; b>=20; b--){
+      if(b%2==0){
+        document.write(b);
+      }
+    }
+
+    document.write('<br>');
+
+    //7. 실습하기 - 구구단출력
+    for(let g=2; g<=9; g++){
+      document.write('<br><br>***************************************************' + g + '***************************************************<br>');
+      for(let i=1; i<=9; i++){
+        document.write(` ${g} * ${i} = ${g*i} `);
+      }
+    }
+
+    // 8. 반복문을 활용한 자리배치도 만들기 - 전체 인원수와 한 줄에 들어갈 자리 수를 입력하면 자동으로 테이블 태그를 만들어주는 반복문 만들기
+    let total_count = prompt('전체 인원수를 입력하세요');
+    let line_count = prompt('한 줄로 배치할 인원수를 입력하세요');
+
+    document.write('<table>');
+    document.write('<caption>테이블 좌석 배치도 만들기</caption>');
+
+    for(let h=0; h<=total_count-1; h++){
+      document.write('<tr>');
+        for(let j=1; j<=line_count; j++){
+
+          let seatNo = h*line_count+j;
+          if(seatNo > total_count) break;
+          document.write(`<td> 좌석 ${seatNo} </td>`)
+        }
+
+      document.write('</tr>');
+    }
+    document.write('</table>');
+
+
+
+  </script>
+</body>
+</html>

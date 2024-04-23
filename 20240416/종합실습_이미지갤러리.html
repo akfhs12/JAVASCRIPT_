@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>종합실습_이미지 갤러리</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="./css/gallery.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <section class="box_photo">
+    <div class="title_area">
+      <h2>포토</h2>
+      <span class="count"></span>
+      <div class="user_btn">
+        <input type="button" value="원본보기" class="button">
+        <input type="button" value="주소복사" class="button">
+      </div>
+    </div>
+    <div class="sub_area">
+      <ul>
+        <li>스틸컷</li>
+        <li>포스터</li>
+      </ul>
+    </div>
+    <article class="photo">
+      <div class="list-area">
+        <i class="fas fa-angle-left"></i>
+        <ul class="list-photo">
+          <li class="line"><img src="./images01/movie_image1.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image2.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image3.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image4.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image5.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image6.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image7.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image8.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image9.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image10.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image11.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image12.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image13.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image14.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image15.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image16.jpg" alt="영화 이미지"></li>
+          <li><img src="./images01/movie_image17.jpg" alt="영화 이미지"></li>
+        </ul>
+        <i class="fas fa-angle-right"></i>
+      </div>
+      <div class="main-photo">
+        <div class="arrow">
+          <i class="fas fa-angle-left"></i>
+          <i class="fas fa-angle-right"></i>
+          <img src="./images01/movie_image1.jpg" alt="영화이미지" id="main">
+        </div>
+      </div>
+
+      <!-- 페이지 번호 표시 -->
+      <div id="photo_title">
+        <span id="img_num"></span>
+      </div>
+    </article>
+  </section>
+
+  <script src="./script/gallery.js"></script>
+</body>
+</html>

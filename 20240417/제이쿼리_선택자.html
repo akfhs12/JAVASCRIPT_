@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리_선택자(selector)</title>
+  <script src="./script/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function(){   //html문서의 로딩이 끝나면 제이쿼리 실행
+      $('#title01').css('color', 'pink');
+      $('.p01').css('backgroundColor', '#bdb76b');
+      $('body').css('font-size', '14px');
+      $('#title01, .p01').css('border', '2px solid #ff0000');
+      $('ul > li').css({
+        'backgroundColor': '#fff345',
+        'font-family': '궁서체',
+        'color': '#004dc9'
+      });
+      $('ul > li:nth-child(2n)').css('backgroundColor', '#ff7519');
+      $('ul > li:nth-child(2n+1)').css('backgroundColor', '#beff19')
+      $('h2 + p').css('text-decoration', 'underline');
+      $('ul > li:even').css('font-family', '굴림체'); //even 인덱스값 1부터 시작 => 홀수
+      $('ul > li:odd').css('font-family', '돋움체'); //odd 인덱스값 0부터 시작 => 짝수
+      $('h2[id=title01]').css('font-weight', '200');
+    });
+  </script>
+</head>
+<body>
+  <h2 id="title01" style="color: #110094";>제이쿼리 선택자(selector)</h2>
+  <p class="p01">제이쿼리에서는 css에서 사용하던 선택자를 활용하여 서식을 적용할 수 있는데, 제이쿼리는 css보다 좀 더 세밀하게 선택할 수 있고 그 개수도 많다.</p>
+  <p>http://oscarotero.com/jquery/ - API 참고 사이트의 왼쪽 'SELECTORES'에서 확인</p>
+
+  <h3>제이쿼리 선택자 사용하여 서식 적용하기</h3>
+  <ul>
+    <li>아이디 선택자를 사용하여 글자색 변경</li>
+    <li>클래스 선택자를 사용하여 배경색 변경</li>
+    <li>태그 선택자를 사용하여 글자크기 변경</li>
+    <li>그룹선택자를 사용하여 테두리 적용</li>
+    <li>자손, 후손 선택자를 사용하여 배경색, 글자모양, 글자색상 적용</li>
+    <li>구조 선택자를 사용하여 홀수, 짝수번째 배경색 적용</li>
+    <li>등위 선택자를 사용하여 글자 밑줄긋기</li>
+    <li>탐색 선택자를 사용하여 홀수, 짝수번째 글자모양 변경</li>
+    <li>속성 선택자를 사용하여 글자색, 굵기 변경</li>
+  </ul>
+
+  <h3>제이쿼리에서 css서식 적용하는 방법</h3>
+  <pre>
+    .css()메소드 사용법
+    서식이 1개일 때       .css('속성', '값');
+    서식이 2개 이상일 때  .css('속성', '값').css('속성', '값').css('속성', '값');   <=비효율적이라 잘 안씀
+    서식이 2개 이상일 때  .css({'속성': '값', '속성': '값', '속성': '값'});
+  </pre>
+</body>
+</html>

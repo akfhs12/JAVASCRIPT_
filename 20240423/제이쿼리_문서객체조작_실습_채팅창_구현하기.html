@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리_문서객체조작_실습_채팅창_구현하기</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      width: 400px;
+      margin: 60px 0 0 10px;
+      box-shadow: 0 2px 4px #cccccc;
+    }
+
+    header {
+      position: relative;
+      background-color: #ffffff;
+      padding: 30px 8px 8px 8px;
+    }
+
+    header .btn {
+      position: absolute;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border: none;
+      border-radius: 50%;
+    }
+
+    header #close {
+      left: 7px;
+      background-color: #ff6059;
+    }
+
+    header #minbtn {
+      left: 26px;
+      background-color: #ffbf2f;
+    }
+
+    header #maxbtn {
+      left: 44px;
+      background-color: #58eb37;
+    }
+
+    header img {
+      left: 7px;
+      width: 80px;
+      vertical-align: middle;
+      border: 1px solid #cccccc;
+    }
+
+    header span {
+      margin-left: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .chat_box {
+      position: relative;
+      height: 400px;
+      padding: 10px;
+      background-color: #d7e4f2;
+      overflow-y: auto;
+      /* 세로 방향 스크롤바 생성 */
+    }
+
+    .chat_box>div {
+      position: relative;
+      display: inline-block;
+      margin: 5px 0;
+      padding: 6px 10px;
+      max-width: 300px;
+      font-size: 14px;
+      clear: both;
+    }
+
+    .bubble1 {
+      /* 상대방 말풍선 */
+      float: left;
+      border-radius: 12px 12px 12px 0;
+      background-color: #ffffff;
+    }
+
+    .bubble2 {
+      /* 나의 말풍선 */
+      float: right;
+      border-radius: 12px 0px 12px 12px;
+      background-color: #fff04f;
+    }
+
+    .txt_box {
+      display: flex;
+      padding: 10px;
+      background-color: #fafafa;
+    }
+
+    .txt_box textarea {
+      width: calc((100% - 50px));
+      height: 60px;
+      padding: 10px;
+      box-sizing: border-box;
+      resize: none;
+      border: 0.5px solid #d7d7d7;
+      border-radius: 2%;
+      background-color: #ffffff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    #send {
+      width: 60px;
+      height: 60px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 3px;
+      color: #ffffff;
+      background-color: #4a90e2;
+      outline: none;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      let talk;
+      let send = $('.txt_box #send')
+
+      // 버튼 클릭시 텍스트 박스 내용을 변수에 담아 출력한다
+      send.click(function () {
+        talk_print()
+      })
+
+      // 엔터키를 누르면 내용이 삽입되게 하기
+      $('.wrap').keydown(function (e) {
+        if (e.keyCode == 13) {
+          talk_print();
+        }
+      })
+
+      function talk_print() {
+        talk = $('textarea').val()
+
+        if (talk == "") {
+          // 버튼 비활성화
+          send.attr('disabled', false);
+        } else {
+          $('textarea').val('');
+          $('.chat_box').append('<div class=bubble2>' + talk + '</div>');
+          $('textarea').focus();
+        }
+      }
+
+
+
+    });
+  </script>
+</head>
+
+<body>
+  <h2>제이쿼리 문서객체조작 실습01_채팅창구현</h2>
+  <p>채팅창 입력 양식을 삽입하여 사용자가 글내용 입력 후 '전송'버튼 클릭시 글내용이 대화 상자에 출력되게 하기</p>
+
+  <ul>
+    <li>채팅창 화면을 header, main, footer 영역으로 구성</li>
+    <li>header영역은 브라우저 버튼, 사용자 프로필 영역, 소개글 작성</li>
+    <li>main영역은 상대방과 사용자 간의 채팅 내용을 말풍선으로 출력</li>
+    <li>footer영역은 사용자가 입력 양식에 내용을 입력하고, 버튼 클릭시 변수에 담아 내용을 출력하게 함</li>
+    <li>이 때, 사용자가 글 내용을 입력하지 않으면 버튼 비활성화(disabled)</li>
+    <li>속성 메서드: val, 클래스 조작: addClass, 내용추가: append</li>
+  </ul>
+
+  <div class="wrap">
+    <header>
+      <input type="button" class="btn" id="close">
+      <input type="button" class="btn" id="minbtn">
+      <input type="button" class="btn" id="maxbtn">
+      <img src="./images/lion.png" alt="프로필이미지">
+      <span>나는 라이언</span>
+    </header>
+
+    <!-- 나와 상대방이 작성한 글내용이 출력되는 영역 -->
+    <section class="chat_box">
+      <div class="bubble1">너 곰이야?</div>
+      <div class="bubble1">ㅋㅋㅋ</div>
+      <div class="bubble2">아니 라이언인데</div>
+    </section>
+
+    <!-- 대화 입력 -->
+    <footer class="txt_box">
+      <textarea class="txt" placeholder="대화 내용 작성"></textarea>
+      <input type="button" value="전송" id="send">
+    </footer>
+  </div>
+</body>
+
+</html>

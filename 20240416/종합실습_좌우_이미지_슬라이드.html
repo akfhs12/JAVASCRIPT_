@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>종합실습_좌우 이미지 슬라이드</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .swiper-wrapper {
+      width: 600%;
+      display: flex;
+      position: relative;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .swiper-slide {
+      width: 100%;
+    }
+
+    .swiper-wrapper>.swiper-slide:last-child {
+      margin-right: 0;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      display: block;
+    }
+
+    /* 좌우버튼 */
+    .btn {
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      width: 30px;
+      height: 30px;
+      border-right: 4px solid #ffffff;
+      border-bottom: 4px solid #ffffff;
+      cursor: pointer;
+    }
+
+    #left {
+      left: 12px;
+      transform: rotate(135deg);
+    }
+
+    #right {
+      right: 12px;
+      transform: rotate(-45deg);
+    }
+
+    @media screen and (max-width: 1023px){
+      
+      .swiper-slide img{
+        height: 500px;
+        object-fit: cover;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <h2>종합실습_좌우 이미지 슬라이드(캐러셀 슬라이드)</h2>
+  <p>carousel - css 3D 트랜스폼과 약간의 JavaScript로 만들어진 일련의 콘텐츠를 순환시키기 위한 슬라이드쇼. 일련의 이미지, 텍스트, 혹은 사용자 정의 마크업으로 동작. 이전/다음의
+    컨트롤이나 위치 표시(인디게이터-indicator)도 지원</p>
+
+  <article>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="./images02/slide1.jpg" alt="이미지"></div>
+        <div class="swiper-slide"><img src="./images02/slide2.jpg" alt="이미지"></div>
+        <div class="swiper-slide"><img src="./images02/slide3.jpg" alt="이미지"></div>
+        <div class="swiper-slide"><img src="./images02/slide4.jpg" alt="이미지"></div>
+        <div class="swiper-slide"><img src="./images02/slide5.jpg" alt="이미지"></div>
+        <div class="swiper-slide"><img src="./images02/slide6.jpg" alt="이미지"></div>
+      </div>
+      <span class="btn" id="left">&nbsp;</span>
+      <span class="btn" id="right">&nbsp;</span>
+    </div>
+  </article>
+
+  <script>
+    // 변수 선언
+    // 좌, 우측 버튼, 이미지 목록, 이동거리, 개수
+    const slide = document.querySelector('.swiper-wrapper');
+    const slide_img = document.querySelectorAll('.swiper-slide');
+    const l_btn = document.getElementById('left');
+    const r_btn = document.getElementById('right');
+    let btn = document.querySelectorAll('.btn');
+
+    const img_n = slide_img.length;
+    const img_w = 100; // 이미지 너비값
+    // const m = 30; // 마진값
+    const s_con = 1; // 한 페이지에 보여줄 개수
+
+    let count = 0; //초기값
+
+    // 감싸는 부모 요소의 너비값 구하기
+    // slide.style.width = (img_w + m) * img_n - m + 'px'; //(300+30)*5-30
+    console.log(slide.style.width);
+    console.log(img_n);
+
+    // 버튼 누르면 움직이는 함수
+    function mslide(n) {
+      slide.style.left = -(img_w * n) + '%';
+
+      count = n;
+      console.log(slide.style.left);
+    }
+
+    // 버튼 클릭시 n값을 mslide에 넘겨서 슬라이드 움직이게 함
+    l_btn.addEventListener('click', function () {
+      clearInterval(timer); //버튼 클릭시 자동으로 안움직이게.
+      if (count > 0) {
+        mslide(count - 1);
+      } else {
+        mslide(img_n - s_con);
+      }
+    })
+
+    r_btn.addEventListener('click', function () {
+      clearInterval(timer); //버튼 클릭시 자동으로 안움직이게.
+      if (count < img_n - s_con) {
+        mslide(count + 1);
+      } else {
+        mslide(0);
+      }
+    })
+
+    // 3초 마다 자동으로 함수를 호출하여 움직이게 한다
+    // 시간객체 setInterval(함수명, 시간) 반복실행
+    // 시간제거 clearInterver(객체명) 시간 정지
+
+
+    // 마우스 오버, 아웃
+
+    btn.forEach((el) => {
+      el.addEventListener('mouseleave', function () {
+        timer = setInterval(function () {
+          if (count <img_n - s_con) {
+            mslide(count + 1);
+          } else {
+            mslide(0);
+          }
+        }, 3000);
+      })
+    });
+
+    let timer = setInterval(function () {
+      if (count < img_n - s_con) {
+        mslide(count + 1);
+      } else {
+        mslide(0);
+      }
+    }, 3000);
+
+    // l_btn.addEventListener('mouseleave', function () {
+    //   timer = setInterval(function () {
+    //     if (count < img_n - s_con) {
+    //       mslide(count + 1);
+    //     } else {
+    //       mslide(0);
+    //     }
+    //   }, 3000);
+    // });
+
+    // r_btn.addEventListener('mouseleave', function() {
+    //   timer = setInterval(function () {
+    //     if (count < img_n - s_con) {
+    //       mslide(count + 1);
+    //     } else {
+    //       mslide(0);
+    //     }
+    //   }, 3000);
+    // });
+
+  </script>
+
+</body>
+
+</html>

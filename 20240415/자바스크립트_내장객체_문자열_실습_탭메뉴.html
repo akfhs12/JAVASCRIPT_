@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_내장객체_문자열_실습예제_탭메뉴 이미지</title>
+  <style>
+    #gallery {
+      width: 600px;
+      height: 479.81px;
+      border: 4px solid #000000;
+    }
+
+    #gallery>h3 {
+      display: none;
+    }
+
+    #gallery * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #gallery ul,
+    #gallery li {
+      list-style: none;
+    }
+
+    #gallery ul {
+      display: flex;
+    }
+
+    #gallery ul li {
+      width: 20%;
+      height: 80px;
+    }
+
+    #gallery ul li:hover img {
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+
+    #gallery img {
+      width: 100%;
+    }
+    .line {
+      border: 2px solid #000000;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>자바스크립트_내장객체_문자열_실습예제_탭메뉴 이미지갤러리</h2>
+  <p>문자열 객체를 활용하여 탭메뉴 5개를 클릭시 해당 문자열값을 변수에 담아 큰 이미지가 변경될 수 있도록 src 주소값을 변경</p>
+  <ol>
+    <li>독립적인 콘텐츠를 만들기 위해 article 박스 만들기</li>
+    <li>썸네일 이미지 메뉴를 만들기 위해 ul, li 태그 작성</li>
+    <li>큰 사진이 보이도록 div 태그 작성</li>
+    <li>script 문자열 객체를 통해 썸네일 이미지 클릭시 해당 src값을 변수에 담고, 큰사진의 src 속성값에 대입하여 이미지 변경</li>
+  </ol>
+
+  <article id="gallery">
+    <h3>이미지 갤러리</h3>
+    <ul class="lnb">
+      <li><img src="./images/635701514854086019.jpg" alt="여행 사진"></li>
+      <li><img src="./images/636867100948529276.jpg" alt="여행 사진"></li>
+      <li><img src="./images/636867964847379089.jpg" alt="여행 사진"></li>
+      <li><img src="./images/638083542592608065.jpg" alt="여행 사진"></li>
+      <li><img src="./images/638109421649497545.jpg" alt="여행 사진"></li>
+    </ul>
+    <img src="./images/635701514854086019.jpg" alt="여행 사진" id="big_img">
+  </article>
+
+  <script>
+    // 변수선언
+    const big_img = document.getElementById('big_img');
+    let s_img = document.querySelectorAll('.lnb > li > img');
+
+    // 작은사진 클릭시 해당 이미지의 src주소값을 변수에 담는다
+    for (let i = 0; i < s_img.length; i++) {
+      s_img[i].addEventListener('mouseenter', function () {
+        let img_src = this.src;
+        
+        console.log(img_src);
+
+        // src변수에 있는 값을 big_img의 src속성값에 대입
+        big_img.src = img_src;
+        
+      });
+      s_img[i].classList.add = ('line');
+    }
+
+
+
+  </script>
+</body>
+
+</html>

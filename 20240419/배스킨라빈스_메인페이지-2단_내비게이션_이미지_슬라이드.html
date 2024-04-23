@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배스킨라빈스 메인페이지 - 2단 내비게이션, 이미지 슬라이드</title>
+  <!-- css초기화 -->
+  <link href="../css/css초기화.css" rel="stylesheet" type="text/css">
+  <!-- common 서식 -->
+  <link href="./css/common.css" rel="stylesheet" type="text/css">
+  <!-- 폰트어썸 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    main {
+      position: relative;
+      padding-top: 46px;
+      margin: 0 auto;
+    }
+
+    .m_slide {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .m_slide .slide {
+      display: flex;
+      width: 500%;
+    }
+
+    .m_slide .slide li {
+      width: 100%;
+    }
+
+    .m_slide .slide li img {
+      width: 100%;
+    }
+
+    .m_slide i.fas {
+      position: absolute;
+      top: 43%;
+      padding: 22px 30px;
+      font-size: 40px;
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .m_slide i.fas:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      ;
+    }
+
+    .m_slide i.fa-angle-left {
+      left: 0;
+    }
+
+    .m_slide i.fa-angle-right {
+      right: 0;
+    }
+
+    .slide_btn {
+      position: absolute;
+      display: flex;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+    }
+
+    .slide_btn li {
+      width: 15px;
+      height: 15px;
+      margin: 0 4px;
+      border-radius: 10px;
+      background-color: rgb(42, 132, 222);
+      cursor: pointer;
+    }
+
+    .btn_act {
+      background-color: #ff7c98 !important;
+    }
+
+    .view {
+      z-index: 100;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="h_top">
+      <h1><a href="index.html" title="메인페이지 바로가기">
+          <img src="./images/logo_baskinrobbins.png" alt="배스킨라빈스 로고">
+        </a></h1>
+    </div>
+    <div class="h_bottom">
+      <nav>
+        <!-- login, join -->
+        <ul class="lnb">
+          <li><a href="login.html" title="로그인">login</a></li>
+          <li><a href="join.html" title="회원가입">join</a></li>
+        </ul>
+
+        <!-- main navigation -->
+        <ul class="gnb">
+          <li><a href="#" title="이달의 제품">flovor of the month</a>
+            <ul class="sub">
+              <li><a href="#" title="아이스크림">
+                  <img src="./images/img_monthly_fom_220930.png" alt="이달의 아이스크림">
+                </a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="메뉴">menu</a>
+            <ul class="sub">
+              <li><a href="#" title="아이스크림">아이스크림</a></li>
+              <li><a href="#" title="아이스크림케이크">아이스크림케이크</a></li>
+              <li><a href="#" title="음료">음료</a></li>
+              <li><a href="#" title="커피">커피</a></li>
+              <li><a href="#" title="디저트">디저트</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="영양성분">영양성분 및 알레르기</a>
+            <ul class="sub">
+              <li><a href="#" title="아이스크림">아이스크림</a></li>
+              <li><a href="#" title="음료">음료</a></li>
+              <li><a href="#" title="디저트">디저트</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="이벤트">event</a>
+            <ul class="sub">
+              <li><a href="#" title="진행중인 이벤트">진행중인 이벤트</a></li>
+              <li><a href="#" title="당첨자 발표">당첨자 발표</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="스토어">store</a>
+            <ul class="sub">
+              <li><a href="#" title="매장찾기">매장찾기</a></li>
+              <li><a href="#" title="고객센터">고객센터</a></li>
+              <li><a href="#" title="단체주문">단체주문</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="소개">about</a>
+            <ul class="sub">
+              <li><a href="#" title="공지사항">공지사항</a></li>
+              <li><a href="#" title="보도자료">보도자료</a></li>
+              <li><a href="#" title="채용정보">채용정보</a></li>
+              <li><a href="#" title="점포개설문의">점포개설문의</a></li>
+              <li><a href="#" title="contact us">contact us</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main>
+    <article class="m_slide">
+      <ul class="slide">
+        <li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+        <li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+        <li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+        <li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+        <li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+      </ul>
+      <i class="fas fa-angle-left"></i>
+      <i class="fas fa-angle-right"></i>
+
+      <ul class="slide_btn">
+        <li class="btn_act" value="0">&nbsp;</li>
+        <li value="1">&nbsp;</li>
+        <li value="2">&nbsp;</li>
+        <li value="3">&nbsp;</li>
+        <li value="4">&nbsp;</li>
+      </ul>
+    </article>
+  </main>
+
+
+  <footer>
+    <address>Copyright &copy; 2023 BRKOREA Company. All Rights Reserved.</address>
+  </footer>
+
+  <!-- 자바스크립트로 2단 내비게이션 구현하기 -->
+  <script>
+    // 변수 선언
+    const h_bottom = document.querySelector('.h_bottom');
+    const gnb = document.querySelector('.h_bottom .gnb');
+
+    // 하단 슬라이드 버튼
+    let slide_cont = $('.slide li');
+    let btn = $('.m_slide .slide_btn li');
+    let i = 0;
+
+
+    // gnb.addEventListener('mouseenter', function(){
+    //   h_bottom.style.height = '326px';
+    // })
+    // gnb.addEventListener('mouseleave', function(){
+    //   h_bottom.style.height='46px';
+    // })
+
+    $(document).ready(function () {
+      // 서브메뉴
+      $(gnb).hover(function () {
+        $(h_bottom).stop().animate({ 'height': '326px' }, 100);
+      }, function () {
+        $(h_bottom).stop().animate({ 'height': '46px' }, 100);
+      });
+
+      // 메인 슬라이드
+      // 마지막 li 태그를 첫번째 li 태그의 앞으로 이동
+      $('.m_slide .slide li:last-child').insertBefore('.m_slide .slide li:first-child');
+
+      // 왼쪽으로 -1600px 만큼 이동하여 1번이 가운데 오도록 한다.
+      $('.m_slide .slide').css('margin-left', '-100%');
+
+      function move_left() {
+        $('.m_slide .slide').animate({ 'margin-left': '-200%' }, 500, function () {
+          $('.m_slide .slide li:first-child').insertAfter('.m_slide .slide li:last-child');
+          $('.m_slide .slide').css('margin-left', '-100%');
+
+
+          if (i < 4) {
+            i++;
+          } else {
+            i = 0;
+          }
+          btn.removeClass('btn_act');
+          btn.eq(i).addClass('btn_act');
+        })
+      }
+
+      function move_right() {
+        $('.m_slide .slide').animate({ 'margin-left': '0' }, 500, function () {
+          $('.m_slide .slide li:last-child').insertBefore('.m_slide .slide li:first-child');
+          $('.m_slide .slide').css('margin-left', '-100%');
+        });
+
+        if (i > 0) {
+          i--;
+        } else {
+          i = 4;
+        }
+        btn.removeClass('btn_act');
+        btn.eq(i).addClass('btn_act');
+      }
+
+      // let timer_right = setInterval(move_right, 4000);
+      let timer = setInterval(move_left, 4000);
+
+      // 좌우 버튼 변수
+      const l_btn = $('.m_slide i.fa-angle-left');
+      const r_btn = $('.m_slide i.fa-angle-right');
+
+      l_btn.click(function () {
+        move_left();
+        clearInterval(timer);
+      });
+
+      r_btn.click(function () {
+        move_right();
+        clearInterval(timer);
+      });
+
+      $('.m_slide i.fas').mouseleave(function () {
+        clearInterval(timer);
+        timer = setInterval(move_left, 4000);
+      });
+
+
+
+      function m_left() {
+        $('.m_slide .slide').animate({ 'margin-left': '-200%' }, 500, function () {
+          $('.m_slide .slide li:first-child').insertAfter('.m_slide .slide li:last-child');
+          $('.m_slide .slide').css('margin-left', '-100%');
+        })
+      }
+
+      btn.click(function () {
+        clearInterval(timer);
+
+        i = this.value;
+
+        console.log(i);
+        if (i == 0) {
+          $('.slide').html(
+            `<li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+            `
+          )
+        } else if(i == 1){
+          $('.slide').html(
+            `<li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+            `
+          )
+        } else if(i == 2){
+          $('.slide').html(
+            `<li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+            `
+          )
+        } else if(i == 3){
+          $('.slide').html(
+            `<li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+            `
+          )
+        } else{
+          $('.slide').html(
+            `<li><a href="#" title="슬라이드"><img src="./images/slide01.png" alt="슬라이드1"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide02.png" alt="슬라이드2"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide3.jpg" alt="슬라이드3"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide4.jpg" alt="슬라이드4"></a></li>
+            <li><a href="#" title="슬라이드"><img src="./images/slide5.jpg" alt="슬라이드5"></a></li>
+            `
+          )
+        }
+
+
+        btn.removeClass('btn_act');
+        $(this).addClass('btn_act');
+        // console.log(this.value);
+        // console.log(slide_cont[this.value]);
+
+        // let l_value = -(100 * this.value) + '%';
+        return i;
+      });
+
+      btn.mouseleave(function () {
+        clearInterval(timer);
+        timer = setInterval(move_left, 4000);
+      });
+
+
+    })
+
+  </script>
+
+</body>
+
+</html>

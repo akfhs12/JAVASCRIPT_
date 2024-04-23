@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+/* 태블릿에서 적용되는 서식 */
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .wrap{
+    width: 768px;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 60% 40%);
+    grid-template-areas:
+    "header header"
+    "nav nav"
+    "con1 con2"
+    "footer footer";
+  }
+
+  nav, .con1, .con2{
+    width: 100%;
+  }
+  nav{
+    height: 80px;
+  }
+}

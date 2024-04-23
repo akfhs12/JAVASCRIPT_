@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_반복문을 활용한 사진 실습 예제</title>
+  <style>
+    ul, li{
+      list-style: none;
+    }
+    .tab_con{
+      width: 600px; height: 640px;
+      position: relative;
+    }
+    .tab_con ul{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      text-align: center;
+    }
+    .tab_con > ul > li{
+      width: 22%;
+    }
+    .tab_con > ul > li > div{
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1px solid #222222;
+      display: none;
+    }
+    .tab_con > ul > li > a {
+      position: absolute;
+      margin-left: 40px;
+      bottom: 10px;
+      border: 1px solid #222222;
+    }
+
+    .tab_con > ul > li > a img{
+      width: 120px;
+    }
+
+    .tab_con > ul > li.on > div{
+      display: block;
+    }
+
+
+
+
+  </style>
+</head>
+<body>
+  <h2>자바스크립트_반복문을 활용한 탭콘텐츠 구현하기</h2>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <article class="tab_con">
+    <ul>
+      <li class="on">
+        <div class="con1">
+          <img src="./images/img1.jpg" alt="유아완구">
+        </div>
+        <a href="#" title=""><img src="./images/img1.jpg" alt="유아완구"></a>
+      </li>
+      <li>
+        <div class="con2">
+          <img src="./images/img2.jpg" alt="유아완구">
+        </div>
+        <a href="#" title=""><img src="./images/img2.jpg" alt="유아완구"></a>
+      </li>
+      <li>
+        <div class="con3">
+          <img src="./images/img3.jpg" alt="유아완구">
+        </div>
+        <a href="#" title=""><img src="./images/img3.jpg" alt="유아완구"></a>
+      </li>
+    </ul>
+  </article>
+
+  <script>
+    // 1. 탭메뉴 목록 변수
+    const tabList = document.querySelectorAll('.tab_con li');
+
+    // 2. 탭메뉴 클릭시 해당 n번째 값 출력해보기
+    for(let i=0; i<=tabList.length; i++){
+      tabList[i].querySelector('a').addEventListener('click', function(e){
+        e.preventDefault();
+        // window.alert('click');
+        for(let j=0; j<tabList.length; j++){ 
+          tabList[j].classList.remove('on');//li태그 개수만큼 on 서식을 제거
+        }
+        this.parentNode.classList.add('on'); //선택한 a요소의 부모인 li 태그에 on 클래스 적용
+      });
+    }
+  </script>
+</body>
+</html>

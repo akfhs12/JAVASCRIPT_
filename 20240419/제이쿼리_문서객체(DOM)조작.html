@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리 문서 객체(DOM) 조작</title>
+  <style>
+    .top_sale * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .top_sale {
+      position: relative;
+      width: 690px;
+      height: 494px;
+      border: 3px solid #0000ff;
+    }
+
+    .top_sale>h4 {
+      line-height: 50px;
+    }
+
+    .top_sale a {
+      text-decoration: none;
+      color: #ffffff;
+      line-height: 70px;
+    }
+
+    .top_sala a:hover {
+      text-decoration: underline;
+    }
+
+    .top_sale nav {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 300px;
+      height: 444px;
+      background-color: #1960cf;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>제이쿼리 문서 객체(DOM) 조작</h2>
+  <p>문서객체조작은 DOM(문서객체모델), HTML 문서 안에서 제이쿼리를 통해 모든 요소와 내용의 속성값 변경, 추가, 삭제 등을 할 수 있는 것을 말한다</p>
+  <p>https://oscarotero.com/jquery 웹사이트 API에서 'ATTRIBUTES', 'MANIPULATION' 카테고리에서 메소드 확인 가능</p>
+
+  <h3>문서 내용을 변경하기 위한 메서드 종류</h3>
+  <ul>
+    <li>$('대상').text() - 텍스트 내용 변경을 위한 메서드</li>
+    <li>$('대상').html() - 태그와 텍스트 내용 변경을 위한 메서드</li>
+    <li>$('대상').attr() - 선택한 요소의 속성이나 속성값을 변경하기 위한 메서드</li>
+    <li>$('대상').val() - 선택한 요소의 폼태그 value 값 변경</li>
+    <li>$('대상').empty() - 선택한 요소의 내용 지우기</li>
+    <li>$('대상').addClass() - 클래스 추가. js에서는 classList.add</li>
+    <li>$('대상').removeClass() - 클래스 제거. js에서는 classList.remove </li>
+    <li>$('대상').hasClass() - 클래스 존재 여부 확인 </li>
+    <li>$('대상').toggleClass() - 클래스 존재 여부 확인 </li>
+    <li>$('내용').appendTo('대상') - 부모내용 마지막 위치로 이동(자리바꾸기) </li>
+    <li>$('내용').prependTo('대상') - 부모내용 처음 위치로 이동(자리바꾸기) </li>
+    <li>$('A').insertAfter('B') - B요소의 뒤에 A를 배치 </li>
+    <li>$('A').insertBefore('B') - B요소의 앞에 A를 배치 </li>
+  </ul>
+
+  <h3>1. 자바스크립트로 내용 삽입하여 출력하기</h3>
+  <p id="p01">자바스크립트를 활용한 내용 출력</p>
+
+  <h3>2. 제이쿼리로 내용 삽입하여 출력하기</h3>
+  <p id="p02">제이쿼리를 활용한 내용 출력</p>
+  <p id="p03">제이쿼리를 html 내용 추가</p>
+
+  <h3>3. attr()메서드로 로고 이미지 변경</h3>
+  <img src="./images/logo_baskinrobbins.png" alt="이미지" id="logo">
+  <input type="button" value="로고 변경" id="btn01">
+
+  <h3>4. 실습하기 - 모두투어 판매 랭킹 No. 1</h3>
+  <article class="top_sale">
+    <h4>모두투어 판매랭킹 No. 1</h4>
+    <nav>
+      <ul>
+        <li><a href="./images02/tour01.jpg" title="두바이">[두바이] 아부다미 6/7일 [기간한정특가]</a></li>
+        <li><a href="./images02/tour02.jpg" title="북해도 3대 온천">[북해도 3대 온천] 맛있는 온천 4일</a></li>
+        <li><a href="./images02/tour03.jpg" title="코타키나발루">[코타키나발루] 초특급 수트라하버 5일</a></li>
+        <li><a href="./images02/tour04.jpg" title="괌">[괌] PIC 리조트 4/5일</a></li>
+      </ul>
+
+    </nav>
+    <img src="./images02/tour01.jpg" alt="판매 랭킹 이미지" id="tour_img">
+  </article>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    // 자바스크립트로 변경
+    document.getElementById('p01').innerText = '<a href="#" title="">일반텍스트 삽입</a>';
+    document.getElementById('p01').innerHTML = '<a href="#" title="">일반텍스트 삽입</a>';
+
+
+    // 제이쿼리로 변경
+    $(document).ready(function () {
+      $('#p02').text('<a href="#" title=""> 텍스트 내용 출력 </a>')
+      $('#p03').html('<a href="#" title=""> 텍스트 내용 출력 </a>')
+
+      $('#btn01').click(function () {
+        $('#logo').attr('src', 'https://www.tlj.co.kr/static/images/common/logo.png');
+      })
+
+
+      // 모두투어 판매 랭킹 No. 1
+      let mnu = $('.top_sale a');
+      let img_url;
+
+      mnu.mouseenter(function(e){
+        e.preventDefault();
+        img_url = $(this).attr('href');
+        // console.log(img_url);
+        $('#tour_img').attr('src', img_url);
+      })
+      mnu.click(function(e){
+        e.preventDefault();
+      })
+
+
+    })
+
+
+
+  </script>
+
+</body>
+
+</html>

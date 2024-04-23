@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_반복문을 활용한 탭콘텐츠 구현하기</title>
+  <style>
+    .tab_con{
+      width: 600px;
+      height: 400px;
+      border: 3px solid #000000;
+      position: relative;
+    }
+    .tab_con > ul{
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    .tab_con > ul > li{
+      text-align: center;
+      width: 20%;
+      list-style: none;
+      background-color: #797979;
+    }
+    .tab_con > ul > li > a {
+      display: block;
+      color: #333333;
+      text-decoration: none;
+      line-height: 50px;
+      color: #ffffff;
+    }
+    .tab_con > ul > li > a:hover{
+      text-decoration: underline;
+    }
+
+    .on{background-color: #ffbb00 !important;}
+
+
+    /* 콘텐츠 영역 서식 */
+    .tab_con div {
+      position: absolute;
+      width: 100%;
+      height: 350px;
+      bottom: 0;
+      left: 0;
+      display: none;
+    }
+    .tab_con .con1{
+      background-color: #7fff00;
+    }
+    .tab_con .con2{
+      background-color: #8d916f;
+    }
+    .tab_con .con3{
+      background-color: #ff3939;
+    }
+    .tab_con .con4{
+      background-color: #3964ff;
+    }
+    .tab_con .con5{
+      background-color: #31a87e;
+    }
+
+    /* class on 서식이 적용된 li의 자손 div태그 보이게 하기 */
+    li.on div{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>자바스크립트_반복문을 활용한 탭콘텐츠 구현하기</h2>
+
+  <article class="tab_con">
+    <ul>
+      <li class="on">
+        <a href="#" title="이태리 남부">이태리&#47;남부</a>
+        <div class="con1">콘텐츠1</div>
+      </li>
+      <li>
+        <a href="#" title="스페인 그라나다">스페인&#47;그라나다</a>
+        <div class="con2">콘텐츠2</div>
+      </li>
+      <li>
+        <a href="#" title="프랑스 몽생미쉘">프랑스&#47;몽생미쉘</a>
+        <div class="con3">콘텐츠3</div>
+      </li>
+      <li>
+        <a href="#" title="영국 런던">영국&#47;런던</a>
+        <div class="con4">콘텐츠4</div>
+      </li>
+      <li>
+        <a href="#" title="그리스 아테네">그리스&#47;아테네</a>
+        <div class="con5">콘텐츠5</div>
+      </li>
+    </ul>
+  </article>
+  <ul>
+    <li>.querySelectorAll('선택자') : 문서 안에 선택한 요소들을 모두 선택</li>
+    <li>.querySelector('선택자') : 문서안에 선택한 요소를 선택</li>
+    <li>.length : 선택한 요소의 개수를 구해주는 메서드</li>
+    <li>.addEventListener : 선택한 요소에 이벤트를 주고자 할 때 사용</li>
+    <li>.classList.remove('클래스명') : 선택한 요소에 클래스 서식을 제거함</li>
+    <li>.classList.add('클래스명') : 선택한 요소에 클래스 서식을 적용함</li>
+    <li>.parentNode : 선택한 요소의 부모요소를 찾아서 선택</li>
+  </ul>
+
+  <script>
+    // 1. 탭메뉴 목록 변수
+    const tabList = document.querySelectorAll('.tab_con li');
+
+    // 2. 탭메뉴 클릭시 해당 n번째 값 출력해보기
+    for(let i=0; i<=tabList.length; i++){
+      tabList[i].querySelector('a').addEventListener('click', function(){
+        // window.alert('click');
+        for(let j=0; j<tabList.length; j++){ 
+          tabList[j].classList.remove('on');//li태그 개수만큼 on 서식을 제거
+        }
+        this.parentNode.classList.add('on'); //선택한 a요소의 부모인 li 태그에 on 클래스 적용
+      });
+    }
+  </script>
+</body>
+</html>

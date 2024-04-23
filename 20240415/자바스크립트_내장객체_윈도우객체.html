@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_내장객체_윈도우객체</title>
+  <style>
+    .modal *{
+      margin: 0;
+      padding: 0;
+    }
+    .modal{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .m_inner{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 380px;
+      transform: translate(-50%, -50%);
+    }
+    .m_inner p{
+      position: relative;
+      top: -4px;
+      background-color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>자바스크립트_내장객체_윈도우객체</h2>
+  <p>브라우저 객체는 사용자가 사용하는 웹브라우저의 창에서 다양한 동작이나 속성을 설정하고자 할 때 사용하는 객체</p>
+
+  <h3>Window 객체</h3>
+  <p>window 객체는 브라우저 객체 중 '최상위 객체'로 현재 실행되고 있는 브라우저창을 가리킴</p>
+
+  <h3>Window 객체의 속성과 메서드</h3>
+  <dl>
+    <dt>Window 객체의 속성(property) 종류</dt>
+    <dd>document</dd>
+    <dd>frameElement</dd>
+    <dd>innerHeight</dd>
+    <dd>innerWidth</dd>
+    <dd>location</dd>
+    <dd>name</dd>
+    <dd>screenX</dd>
+    <dd>screenY</dd>
+    <dd>scrollX</dd>
+    <dd>scrollY</dd>
+    <dd>sessionStorage</dd>
+
+    <dt>Window 객체의 메서드(method) 종류</dt>
+    <dd>alert(); - 경고창 띄우기</dd>
+    <dd>blur(); - 현재 창의 포커스 제거</dd>
+    <dd>close(); - 현재 창 닫기</dd>
+    <dd>confirm(); - 확인/취소 버튼이 있는 창 띄우기</dd>
+    <dd>focus(); - 현재 창에 포커스 부여</dd>
+    <dd>moveBy(); - 현재 창을 지정한 크기만큼 이동</dd>
+    <dd>moveTo(); - 현재 창을 지정한 좌표로 이동</dd>
+    <dd>open(); - 지정한 문서를 엶</dd>
+    <dd>propmt(); - 사용자가 입력 가능한 프롬프트창 활성화</dd>
+    <dd>resizeTo(); - 동적으로 브라우저 창의 크기 조절</dd>
+    <dd>scroll(); - 문서의 특정 위치로 스크롤</dd>
+    <dd>sizeToContent(); - 내용에 맞게 창 크기 조절</dd>
+    <dd>stop(); - 로딩 중지</dd>
+  </dl>
+
+  <input type="button" value="alert('경고');" onclick="alert('경고')">
+  <input type="button" value="prompt('내용입력')" onclick="prompt('내용입력')">
+  <input type="button" value="confirm('확인, 취소')" onclick="confirm('확인, 취소');">
+  <input type="button" value="open('문서열기')" onclick="popup();">
+  <input type="button" value="close('문서닫기')" onclick="window.close();">
+  
+  <h3>실습예제. select, option 태그를 활용하여 'Family Site' 구현</h3>
+  <select name="" id="" onchange="siteUrl(this)">
+    <option value="">Family Site</option>
+    <option value="http://www.naver.com">네이버</option>
+    <option value="http://www.daum.net">다음</option>
+    <option value="http://www.google.com">구글</option>
+  </select>
+
+  <h3>실습예제. location객체를 사용하여 웹페이지의 url 주소 정보 표시</h3>
+  <p id="location"></p>
+
+  <h3>실습예제. window.screen객체를 사용하여 현재 브라우저의 화면크기 표시</h3>
+  <p id="window"></p>
+
+  <h3>실습예제. html문서가 열리면 화면 중앙에 모달 윈도 띄우기</h3>
+  <p>팝업창은 브라우저의 팝업 차단 기능으로 인해 사용자가 보지 않을 가능성이 많아 요즘 팝업창을 띄우지 않고, 팝업 레이어, 모달윈도(css로 박스 포지션을 배치)를 활용하여 띄운다.</p>
+  <dl>
+    <dt>모달윈도(modal window)</dt>
+    <p><input type="button" value="닫기" id="close_btn"></p>
+  </dl>
+
+  <div class="modal">
+    <div class="m_inner">
+      <a href="#" title="광고배너"><img src="./images/banner.jpg" alt="광고배너"></a>
+      <p><input type="button" value="닫기" id="c_btn"></p>
+    </div>
+  </div>
+
+  <pre>
+    getElementById()
+    : id를 통해 엘리먼트를 반환한다. 만약 document에 구체적인 ID 엘리먼트가 없다면 null을 반환
+
+    querySelector()
+    : selector의 구체적인 그룹과 일치하는 document인 첫번째 엘리먼트를 반환. 일치하는 게 없으면 null 반환.
+
+    querySelectorAll(): document안에 있는 모든 엘리먼트 반환.
+  </pre>
+
+  <script>
+    // 현재 문서의 위치 정보 가져오기
+    document.getElementById('location').innerHTML=`전체주소: ${location.href} ${location.host} ${location.protocol}`;
+
+    // 현재 브라우저의 크기값 가져오기
+    document.getElementById('window').innerHTML=`현재 화면의 가로해상도, 세로 해상도의 크기는 ${screen.width}, ${screen.height}입니다`
+
+    function popup(){
+      // 필요한 문서 불러오기
+      // window.open("http://www.naver.com");
+      window.open('자바스크립트_내장객체_배열.html','','width=400px, height=410px');
+    }
+
+    function siteUrl(a){
+      console.log(a);
+      if(a.value!=""){
+        window.open(a.value, '_blank');
+        a.value="";
+      }else{
+        return;
+      }
+    }
+
+    // 닫기버튼 함수
+    const c_btn = document.getElementById('c_btn');
+
+    // 클릭시 모달박스 숨김
+    c_btn.addEventListener('click', function(){
+      document.querySelector('.modal').style.display='none';
+    })
+  </script>
+</body>
+</html>

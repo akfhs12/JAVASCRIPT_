@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제_제이쿼리_문서객체조작_내용추가_메서드를_활용한_실시간_검색키워드_순위</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .box {
+      width: 350px;
+      background-color: #cccccc;
+    }
+
+    .b_inner {
+      padding: 20px;
+    }
+
+    .b_inner>h3 {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #0000ff;
+    }
+
+    .b_inner>ul {
+      height: 150px;
+      padding-left: 0;
+      border: 1px solid #ff0000;
+    }
+
+    .b_inner a {
+      display: block;
+      line-height: 2em;
+      color: #333333;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .b_inner ul>li:nth-child(1) a {
+      font-size: 18px;
+      line-height: 1.4em;
+      font-weight: bold;
+    }
+
+    .b_inner ul>li:nth-child(2) a {
+      font-size: 16px;
+      line-height: 1.4em;
+      margin-top: 4px;
+    }
+
+
+    .news {
+      display: flex;
+      width: 500px;
+      margin-top: 50px;
+      margin-left: 50px;
+      border-radius: 5px;
+      background-color: #ececec;
+    }
+
+    .news h3 {
+      margin: 0;
+      padding: 15px 0px 0px 20px;
+      font-size: 16px;
+    }
+    .news h3::after{
+      content: ' \007C';
+      padding-left: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #333333;
+    }
+
+    .news_lank {
+      width: 400px;
+      height: 50px;
+      overflow: hidden;
+    }
+    .news_lank ul{
+      padding-top: 12px;
+      padding-left: 20px;
+    }
+
+    .news_lank a {
+      display: block;
+      color: #333333;
+      text-decoration: none;
+      line-height: 30px;
+
+      /* 말줄임표 나오게 하기 */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .news_lank a:hover {
+      color: #0000ff;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <h2>실습예제_제이쿼리_문서객체조작_내용추가_메서드를_활용한_실시간_검색키워드_순위</h2>
+  <p>검색순위, 예매순위, 판매순위, 랭킹 등</p>
+
+  <h3>시간객체</h3>
+  <p>setInterval(함수명, 반복할시간); - 일정시간 마다 함수나 내용을 반복호출하여 실행</p>
+  <p>setTimeout(내용, 반복할시간); - 일정시간 지난 후 함수를 호출하여 한 번 내용 실행</p>
+
+  <div class="box">
+    <article class="b_inner">
+      <h3>실시간 검색순위</h3>
+      <ul>
+        <li><a href="#" title="키워드">Keyword1</a></li>
+        <li><a href="#" title="키워드">Keyword2</a></li>
+        <li><a href="#" title="키워드">Keyword3</a></li>
+        <li><a href="#" title="키워드">Keyword4</a></li>
+        <li><a href="#" title="키워드">Keyword5</a></li>
+        <li><a href="#" title="키워드">Keyword6</a></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="news">
+    <h3>IT뉴스</h3>
+    <article class="news_lank">
+      <ul>
+        <li><a href="#" title="실시간 뉴스">카카오모빌리티, 로봇 배송 서비스 ‘브링' 출시</a></li>
+        <li><a href="#" title="실시간 뉴스">SKT·국립공원공단, 국립공원 야영장 다회용기 대여 서비스 확대</a></li>
+        <li><a href="#" title="실시간 뉴스">국립중앙과학관, 스포츠과학 특별전 '승리공식 사이언스' 개최</a></li>
+        <li><a href="#" title="실시간 뉴스">생기원, 가시광선으로 살균하는 섬유 코팅기술 개발</a></li>
+        <li><a href="#" title="실시간 뉴스">‘붉은 태양의 모든 것’…눈으로 볼 수 있다면</a></li>
+        <li><a href="#" title="실시간 뉴스">태양 표면에서 꿈틀거리는 ‘이것’은 무엇?…천체사진공모전 수상작 발표</a></li>
+        <li><a href="#" title="실시간 뉴스">금융보안원, 금융사기 수법 심층 분석…인텔리전스 보고서 공개</a></li>
+        <li><a href="#" title="실시간 뉴스">인포뱅크, KIST SBH와 손잡고 바이오·의료 스타트업 발굴·성장 지원</a></li>
+        <li><a href="#" title="실시간 뉴스">KISA, '화이트햇 투게더' 시즌3 참가자 모집</a></li>
+        <li><a href="#" title="실시간 뉴스">마이크로소프트, 국내외 기업 AI 전환 사례 공개</a></li>
+      </ul>
+    </article>
+  </div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // setInterval
+
+      let boxIn = $('.b_inner ul');
+      let boxRow = $('.b_inner ul li:first-child');
+
+      // function print(){
+      //   console.log('함수출력');
+      //     boxRow = $('.b_inner ul li:first-child');
+      //   boxRow.appendTo(boxIn).show(300);
+
+      // }
+
+      // setInterval(print, 3000)
+
+      setInterval(function () {
+        console.log('반복실행');
+        boxRow = $('.b_inner ul li:first-child');
+
+        let print = () => {
+          boxRow.appendTo(boxIn).show(300);
+        }
+        boxRow.hide(300, print);
+
+      }, 3000)
+
+      let news = $('.news_lank ul');
+      let newsMain = $('.news_lank ul li:first-child');
+
+      setInterval(function () {
+        console.log('실시간 뉴스 랭킹');
+        newsMain = $('.news_lank ul li:first-child');
+
+        let update = ()=> {
+          newsMain.appendTo(news).show(300);
+        }
+        newsMain.hide(300, update);
+
+      }, 3000)
+
+
+
+    })
+  </script>
+</body>
+
+</html>

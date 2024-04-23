@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트로 슬라이드 구현하기</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    article {
+      text-align: center;
+    }
+
+    .swiper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .swiper-wrapper {
+      width: 500%;
+      display: flex;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 700px;
+      background-color: aquamarine;
+    }
+
+    .swiper-slide:nth-child(2) {
+      background-color: #ffb812;
+    }
+
+    .swiper-slide:nth-child(3) {
+      background-color: #cf5138;
+    }
+
+    .swiper-slide:nth-child(4) {
+      background-color: #413aa2;
+    }
+
+    .swiper-slide:nth-child(5) {
+      background-color: #dcecf5;
+    }
+
+    .btn {
+      position: absolute;
+      top: 50%;
+    }
+
+    #p_btn {
+      left: 0;
+    }
+
+    #n_btn {
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <h2>자바스크립트로 슬라이드 구현하기</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+      </div>
+      <input type="button" value="이전" class="btn" id="p_btn">
+      <input type="button" value="다음" class="btn" id="n_btn">
+    </div>
+  </article>
+
+  <script>
+    const slide_box = document.querySelector('.swiper-wrapper');
+    const slide_cont = document.querySelectorAll('.swiper-slide');
+    const p_btn = document.getElementById('p_btn');
+    const n_btn = document.getElementById('n_btn');
+    let btn = document.querySelectorAll('.btn');
+    let count = 0;
+
+    function slide(n) {
+      slide_box.style.right = 100 * n + "%";
+
+      count = n;
+    }
+
+    p_btn.addEventListener('click', function () {
+      clearInterval(timer); //버튼 클릭시 자동으로 안움직이게.
+      if (count > 0) {
+        slide(count - 1);
+      } else {
+        slide(slide_cont.length - 1);
+      }
+    });
+    n_btn.addEventListener('click', function () {
+      clearInterval(timer);
+      if (count < slide_cont.length - 1) {
+        slide(count + 1);
+      } else {
+        slide(0);
+      }
+    });
+
+    btn.forEach((el) => {
+      el.addEventListener('mouseleave', function () {
+        timer = setInterval(function () {
+          if (count < slide_cont.length - 1) {
+            slide(count + 1);
+          } else {
+            slide(0);
+          }
+        }, 2000);
+      })
+    });
+
+    let timer = setInterval(function () {
+      if (count < slide_cont.length - 1) {
+        slide(count + 1);
+      } else {
+        slide(0);
+      }
+    }, 2000);
+
+
+  </script>
+</body>
+
+</html>

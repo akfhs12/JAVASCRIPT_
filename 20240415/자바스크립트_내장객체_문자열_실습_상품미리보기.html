@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_내장객체_문자열_실습예제_상품미리보기</title>
+  <style>
+    #shop * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    #shop {
+      width: 470px;
+      border: 1px solid #000000;
+      font-size: 0;
+    }
+
+    #shop h3 {
+      display: none;
+    }
+
+    .lnb {
+      display: flex;
+    }
+
+    .lnb li {
+      width: 20%;
+
+    }
+
+    .lnb li:hover {
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+
+    .lnb img {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .big_img {
+      height: 470px;
+    }
+
+    .line {
+      border: 2px solid #ff3a3a;
+    }
+
+    #price {
+      font-weight: bold;
+      color: #ff3a3a;
+    }
+  </style>
+</head>
+
+<body>
+  <article id="shop">
+    <h3>상품 미리보기</h3>
+    <img src="./images/photo01.jpg" alt="상품사진" id="big_img">
+    <ul class="lnb">
+      <li><img src="./images/photo01.jpg" alt="상품사진" class="line"></li>
+      <li><img src="./images/photo02.jpg" alt="상품사진"></li>
+      <li><img src="./images/photo03.jpg" alt="상품사진"></li>
+      <li><img src="./images/photo04.jpg" alt="상품사진"></li>
+      <li><img src="./images/photo05.jpg" alt="상품사진"></li>
+    </ul>
+  </article>
+  <div class="shop_txt">
+    <p><strong>오늘 마감</strong></p>
+    <p><strong>최대 40% 쿠폰 머렐 헤비다운 외 스포츠 특가</strong></p>
+    <span id="price">10% 151,200원</span>
+    <a href="#" title="혜택보기">혜택보기</a>
+    <p><a href="#" title="혜택">구매 전 적립금 5,000원 받기 카드 무이자 혜택보기 (최대 6개월)</a></p>
+  </div>
+
+  <script>
+    const b_img = document.getElementById('big_img');
+    let s_img = document.querySelectorAll('.lnb > li > img');
+
+    let price = document.getElementById('price');
+
+    for (let i = 0; i < s_img.length; i++) {
+      s_img[i].addEventListener('click', function () {
+        let ac_img = this.src;
+        b_img.src = ac_img;
+
+        for (let j = 0; j < s_img.length; j++) {
+          s_img[j].classList.remove('line');
+        }
+
+        s_img[i].classList.add('line');
+
+        switch (i) {
+          case 0: price.innerHTML = "10% 151,200원"; break;
+          case 1: price.innerHTML = "25% 110,900원"; break;
+          case 2: price.innerHTML = "17% 80,500원"; break;
+          case 3: price.innerHTML = "5% 98,900원"; break;
+          default: price.innerHTML = "40% 147,400원";
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

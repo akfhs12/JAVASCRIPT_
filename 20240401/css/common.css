@@ -1,0 +1,46 @@
+@charset 'utf-8';
+
+*{
+  margin: 0;
+  padding: 0;}
+h2, p{
+  padding: 10px;
+}
+ol, li{
+  list-style: none;
+}
+
+
+.wrap{
+  display: grid;
+  grid-gap: 10px;
+}
+
+header{
+  height: 80px;
+  background-color: #cccccc;
+  grid-area: header;
+}
+nav{
+  width: 80px;
+  height: 610px;
+  background-color: #ffff00;
+  grid-area: nav;
+}
+.con1{
+  width: 660px;
+  height: 550px;
+  background-color: aqua;
+  grid-area: con1;
+}
+.con2{
+  width: 260px;
+  height: 550px;
+  background-color: coral;
+  grid-area: con2;
+}
+footer{
+  height: 50px;
+  background-color: #444444;
+  grid-area: footer;
+}

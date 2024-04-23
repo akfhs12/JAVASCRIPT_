@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포토_이미지갤러리</title>
+
+  <!-- 폰트어썸 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    img,
+    i {
+      cursor: pointer;
+    }
+
+    .line {
+      border: 2px solid #ff0000;
+    }
+
+    /* 상단서식 */
+    .photo {
+      width: 886px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .photo>h2>span {
+      font-size: 0.9rem;
+      color: #ff0000;
+    }
+
+    .btn {
+      float: right;
+    }
+
+    .btn>span {
+      border: 1px solid #333333;
+      padding: 5px 8px;
+      font-size: 1rem;
+    }
+
+    .poster_txt {
+      font-size: 1rem;
+    }
+
+    /* 갤러리 상단 서식 */
+    .gallery {
+      margin-top: 20px;
+    }
+
+    .gallery-cont {
+      position: relative;
+      top: -100px;
+      width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+
+    .gallery-cont img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      box-sizing: border-box;
+    }
+
+    /* 버튼 서식 */
+    .btn_box {
+      width: 100%;
+      position: relative;
+    }
+
+    .fa-solid {
+      padding: 40px 14.5px;
+      border: 1px solid #d1d1d1;
+    }
+
+    .right_btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .big_box {
+      position: relative;
+    }
+    .big_img{
+      width: 886px;
+    }
+
+    .left_btn2,
+    .right_btn2 {
+      color: #ffffff;
+      background-color: #333333;
+      border: 1px solid #171717;
+      position: absolute;
+      top: 140px;
+    }
+
+    .left_btn2 {
+      left: -20px;
+    }
+
+    .right_btn2 {
+      right: -20px;
+    }
+  </style>
+</head>
+
+<body>
+  <article class="photo">
+    <h2>포토
+      <span class="choose_n">1</span> <span>&#47;</span> <span class="total_n"></span>
+    </h2>
+
+    <span class="poster_txt">스틸컷 포스터</span>
+    <div class="btn">
+      <span class="view">원본보기</span>
+      <span class="url_copy">주소복사</span>
+    </div>
+
+    <div class="gallery">
+      <div class="btn_box">
+        <i class="fa-solid fa-chevron-left left_btn"></i>
+        <i class="fa-solid fa-angle-right right_btn"></i>
+      </div>
+      <ul class="gallery-cont">
+        <li><img src="./images01/movie_image1.jpg" alt="영화 이미지" class="line"></li>
+        <li><img src="./images01/movie_image2.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image3.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image4.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image5.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image6.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image7.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image8.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image9.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image10.jpg" alt="영화 이미지"></li>
+        <li><img src="./images01/movie_image11.jpg" alt="영화 이미지"></li>
+      </ul>
+
+    </div>
+    <div class="big_box">
+      <img src="./images01/movie_image1.jpg" alt="영화 이미지" class="big_img">
+      <i class="fa-solid fa-chevron-left left_btn2"></i>
+      <i class="fa-solid fa-angle-right right_btn2"></i>
+    </div>
+  </article>
+
+  <script>
+    let choose_n = document.querySelector('.choose_n');
+    let total_n = document.querySelector('.total_n');
+    let s_img = document.querySelectorAll('.gallery-cont > li > img');
+    let big_img = document.querySelector('.big_img');
+    let l_btn = document.querySelectorAll('.fa-chevron-left');
+    let r_btn = document.querySelectorAll('.fa-angle-right');
+    let n = 1;
+
+    total_n.innerHTML = s_img.length;
+
+
+    for (let i = 0; i < s_img.length; i++) {
+      s_img[i].addEventListener('click', function () {
+        // 포토 넘버와 큰 이미지 소스
+        n = i + 1;
+        change(n);
+
+      });
+    }
+
+    function change() {
+      choose_n.innerHTML = n;
+      big_img.src = './images01/movie_image'+n+'.jpg';
+
+      // 클릭시 빨간박스
+      for (let j = 0; j < s_img.length; j++) {
+        s_img[j].classList.remove('line');
+      }
+      s_img[n-1].classList.add('line');
+    }
+
+
+    l_btn.forEach((el) => {
+      el.addEventListener('click', function () {
+        if (n == 1) {
+          n = 11;
+        } else {
+          n--;
+        }
+        change(n);
+      });
+    });
+
+    r_btn.forEach((el) => {
+      el.addEventListener('click', () => {
+        if (n == 11) {
+          n = 1;
+        } else {
+          n++;
+        }
+        change(n);
+      });
+    });
+
+
+  </script>
+
+</body>
+
+</html>

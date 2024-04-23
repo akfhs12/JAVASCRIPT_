@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>체크박스를 활용한 찜하기 버튼 구현하기</title>
+  <style>
+    label{
+      display: inline-block;
+      width: 25px;
+      height: 22px;
+      background: url('./images/back.png');
+      text-indent: -9999px;
+      cursor: pointer;
+    }
+    #toggle{display: none;}
+    #toggle:checked + label{background-position: -29px 0;}
+  </style>
+</head>
+<body>
+  <h2>체크박스를 활용한 찜하기 버튼 구현</h2>
+  <ul>
+    <li>하트 모양의 이미지를 피그마에서 누르기 전 후 디자인 작업하고 1장의 이미지로 저장</li>
+    <li>html 태그 체크박스를 삽입하고 label 태그를 작성(찜)</li>
+    <li>이때 체크박스를 label 태그보다 반드시 위에 작성</li>
+    <li>label 태그에 display:inline-block으로 설정하여 크기값을 준다(배경이미지 삽입을 위함)</li>
+    <li>체크작스에 체크시 뒤에 위치한 label 태그에 배경 위치값을 변경하여 이미지를 변경</li>
+  </ul>
+  <input type="checkbox" id="toggle">
+  <label for="toggle">찜하기</label>
+</body>
+</html>

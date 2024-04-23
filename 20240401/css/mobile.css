@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+/* 모바일에서 적용되는 서식 */
+
+@media screen and (max-width: 767px){
+  nav, .con1, .con2{
+    width: 100%;
+  }
+  .con1, .con2{
+    height: 100vh;
+  }
+  .wrap{
+    margin: 0 auto;
+    display: block;
+  }
+
+  nav{
+    height: 80px;
+  }
+}
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트_콘트롤버튼_구현하기(클래스조작)</title>
+  <style>
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background-color: #cccccc;
+      cursor: pointer;
+    }
+
+    .act {
+      background-color: #ff0000 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>자바스크립트로 콘트롤버튼 구현하기(클래스조작)</h2>
+  <p>목록 태그를 활용하여 콘트롤 버튼 서식을 작성하고, act클래스로 클릭시 적용할 서식을 작성하여 사용자가 버튼을 클릭하면 모든 act를 제거하고 해당 버튼에만 act클래스를 적용한다</p>
+
+  <ul class="c_btn_list">
+    <li class="c_btn act">&nbsp;</li>
+    <li class="c_btn">&nbsp;</li>
+    <li class="c_btn">&nbsp;</li>
+    <li class="c_btn">&nbsp;</li>
+  </ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    // 제이쿼리로 구현
+    // $(document).ready(function(){
+    //   let cbtn = $('.c_btn');
+
+    //   cbtn.click(function(){
+    //     cbtn.removeClass('act');
+    //     $(this).addClass('act');
+    //   })
+
+
+    // });
+  </script>
+
+  <script>
+    // javascript로 구현
+    let c_btn = document.querySelectorAll('.c_btn');
+
+    for (let i = 0; i < c_btn.length; i++) {
+
+      c_btn[i].addEventListener('click', class_act);
+    }
+
+    function class_act() {
+      for (let j = 0; j < c_btn.length; j++) {
+        c_btn[j].classList.remove('act');
+        this.classList.add('act');
+      }
+    }
+    console.dir(c_btn[0]);
+
+
+
+
+  </script>
+</body>
+
+</html>

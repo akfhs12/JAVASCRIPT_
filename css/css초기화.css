@@ -1,0 +1,105 @@
+@charset 'utf-8';
+
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+
+/* 전체선택자를 사용하지 않고 태그를 골라 여백 초기화 */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+body {
+  line-height:1;
+}
+
+/* 구형브라우저에서는 html5 태그를 인식하지 못하기 때문에 해당 태그를 블럭 요소로 만들어 인식하게끔 한다 */
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+  display:block;
+}
+
+/* 목록 앞에 기호 숨기기 */
+nav u, li, ol {
+  list-style:none;
+}
+
+/* 인용문 기호 숨기기 */
+blockquote, q {
+  quotes:none;
+}
+
+/* 인용문 기호 앞뒤에 공백 삽입 */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content:'';
+  content:none;
+  }
+
+/* 여백초기화 */
+  a {
+  margin:0;
+  padding:0;
+  font-size:100%;
+  text-decoration: none;
+  vertical-align:baseline;
+  background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+  background-color:#ff9;
+  color:#000;
+  text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+  background-color:#ff9;
+  color:#000; 
+  font-style:italic;
+  font-weight:bold;
+}
+del {
+  text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+  border-bottom:1px dotted;
+  cursor:help;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+/* change border colour to suit your needs */
+hr {
+  display:block;
+  height:1px;
+  border:0; 
+  border-top:1px solid #cccccc;
+  margin:1em 0;
+  padding:0;
+}
+
+/* 글자가 세로 중앙 정렬 되도록 함 */
+input, select {
+  vertical-align:middle;
+}
